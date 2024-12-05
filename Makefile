@@ -1,0 +1,85 @@
+# Compiler
+FC = ifort
+
+# Compiler flags
+#FFLAGS = -O2 -g
+FFLAGS = -O2 -g -qopenmp
+
+# Source files
+SRC = VARIABLES.f90 MAIN_CODE.f90 WALL_COORDINATES.f90 INITIALIZE.f90 INITDENSITY.f90 \
+      MACROS.f90 F_SC.f90 F_EQ.f90 COLLISION.f90 STREAMING.f90 BOUNCEBACK.f90 PRESSURE_BOUNDARIES.f90 \
+      OUTPUT.f90
+
+# Object files
+OBJ = VARIABLES.o MAIN_CODE.o WALL_COORDINATES.o INITIALIZE.o INITDENSITY.o \
+      MACROS.o F_SC.o F_EQ.o COLLISION.o STREAMING.o BOUNCEBACK.o PRESSURE_BOUNDARIES.o \
+      OUTPUT.o
+
+# Executable name
+EXEC = scmp_program
+
+# Default targets
+all: $(EXEC)
+
+# Linking the executable
+$(EXEC): $(OBJ)
+	$(FC) $(FFLAGS) -o $(EXEC) $(OBJ)
+
+# Compiling VARIABLES.f90 (the module file)
+VARIABLES.o: VARIABLES.f90
+	$(FC) $(FFLAGS) -c VARIABLES.f90
+
+# Compiling MAIN_CODE.f90 (depends on all subroutines)
+MAIN_CODE.o: MAIN_CODE.f90 VARIABLES.o WALL_COORDINATES.o INITIALIZE.o INITDENSITY.o \
+             MACROS.o F_SC.o F_EQ.o COLLISION.o STREAMING.o BOUNCEBACK.o PRESSURE_BOUNDARIES.o OUTPUT.o
+	$(FC) $(FFLAGS) -c MAIN_CODE.f90
+
+# Compiling WALL_COORDINATES.f90 (depends on VARIABLES.o)
+WALL_COORDINATES.o: WALL_COORDINATES.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c WALL_COORDINATES.f90
+
+# Compiling INITIALIZE.f90 (depends on VARIABLES.o)
+INITIALIZE.o: INITIALIZE.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c INITIALIZE.f90
+
+# Compiling INITDENSITY.f90 (depends on VARIABLES.o)
+INITDENSITY.o: INITDENSITY.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c INITDENSITY.f90
+
+# Compiling MACROS.f90 (depends on VARIABLES.o)
+MACROS.o: MACROS.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c MACROS.f90
+
+# Compiling F_SC.f90 (depends on VARIABLES.o)
+F_SC.o: F_SC.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c F_SC.f90
+
+# Compiling F_EQ.f90 (depends on VARIABLES.o)
+F_EQ.o: F_EQ.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c F_EQ.f90
+
+# Compiling COLLISION.f90 (depends on VARIABLES.o)
+COLLISION.o: COLLISION.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c COLLISION.f90
+
+# Compiling STREAMING.f90 (depends on VARIABLES.o)
+STREAMING.o: STREAMING.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c STREAMING.f90
+
+# Compiling BOUNCEBACK.f90 (depends on VARIABLES.o)
+BOUNCEBACK.o: BOUNCEBACK.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c BOUNCEBACK.f90
+
+# Compiling PRESSURE_BOUNDARIES.f90 (depends on VARIABLES.o)
+PRESSURE_BOUNDARIES.o: PRESSURE_BOUNDARIES.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c PRESSURE_BOUNDARIES.f90
+
+# Compiling OUTPUT.f90 (depends on VARIABLES.o)
+OUTPUT.o: OUTPUT.f90 VARIABLES.o
+	$(FC) $(FFLAGS) -c OUTPUT.f90
+
+# Clean up object files and executable
+clean:
+	rm -f $(OBJ) $(EXEC) *.mod
+
+.PHONY: clean
