@@ -5,6 +5,8 @@ D3Q19 LBM code for direct numerical simulation (DNS) of turbulence. The parallel
 
 # Compile and run
 
-Ensure sufficient memory is allocated: export OMP_STACKSIZE=6G
+1. Ensure sufficient memory is allocated:
+   ```bash
+   export OMP_STACKSIZE=6G
 Compile the code using the provided Makefile: make
 Run the program: ./scmp_program.
