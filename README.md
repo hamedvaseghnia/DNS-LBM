@@ -9,8 +9,9 @@ D3Q19 LBM code for direct numerical simulation (DNS) of turbulence. The parallel
    ```bash
    export OMP_STACKSIZE=6G
 2. Compile the code using the provided Makefile
-3.    ```bash
+   ```bash
    make
-Run the program: 
+   
+3. Run the program: 
    ```bash
    ./scmp_program.
