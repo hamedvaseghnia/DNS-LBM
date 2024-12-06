@@ -3,6 +3,8 @@ D3Q19 LBM code for direct numerical simulation (DNS) of turbulence with grid res
 
 Solver is written with Intel FORTRAN and parallelized using openMP
 
+The spectral method reference is take from the work of M.E. Brachet from "Direct simulation of three-dimensional turbulence in the Taylor—Green vortex". (1991) Fluid Dynamics Research
+
 # Compile and run
 
 1. Ensure sufficient memory is allocated:
@@ -14,7 +16,7 @@ Solver is written with Intel FORTRAN and parallelized using openMP
    
 3. Run the program: 
    ```bash
-   ./scmp_program.
+   ./scmp_program
 
 # Computational cost
 
