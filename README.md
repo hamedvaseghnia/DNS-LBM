@@ -18,6 +18,6 @@ Solver is written with Intel FORTRAN and parallelized using openMP
 
 # Computational cost
 
-The LBM simulation presented below, compared with a reference spectral method, was performed using 24 threads on an Intel Xeon E7-8870 processor with a clock speed of 2.4 GHz. The simulation ran for 5 days.
+The LBM simulation presented below, compared with a reference spectral method, was performed using 24 threads on an Intel Xeon E7-8870 processor with a clock speed of 2.4 GHz. The simulation ran for 10 days.
 
-plot.tif
+GitPlot.tif
