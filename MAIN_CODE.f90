@@ -153,7 +153,7 @@ PROGRAM SCMP
     
     CALL MACROS
     
-    CALL F_SC
+    !CALL F_SC
     
     CALL F_EQ 
     
@@ -242,4 +242,5 @@ PROGRAM SCMP
     
      PRINT *,"TIME=",(FINISH-START)/60,"MINUTES"
      PAUSE
+
     END PROGRAM SCMP
