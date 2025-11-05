@@ -169,9 +169,9 @@ PROGRAM SCMP
         DO Y=1,YMAX
             DO X=1,XMAX
     
-                UPP(X,Y,Z)=U(X,Y,Z)+0.5D0*F_SCX(X,Y,Z)/DXY(X,Y,Z)
-                VPP(X,Y,Z)=V(X,Y,Z)+0.5D0*F_SCY(X,Y,Z)/DXY(X,Y,Z)
-                WPP(X,Y,Z)=W(X,Y,Z)+0.5D0*F_SCZ(X,Y,Z)/DXY(X,Y,Z)
+                UPP(X,Y,Z)=U(X,Y,Z) !+0.5D0*F_SCX(X,Y,Z)/DXY(X,Y,Z)
+                VPP(X,Y,Z)=V(X,Y,Z) !+0.5D0*F_SCY(X,Y,Z)/DXY(X,Y,Z)
+                WPP(X,Y,Z)=W(X,Y,Z) !+0.5D0*F_SCZ(X,Y,Z)/DXY(X,Y,Z)
                 USQRS(X,Y,Z)=dsqrt(UPP(X,Y,Z)*UPP(X,Y,Z)+VPP(X,Y,Z)*VPP(X,Y,Z)+WPP(X,Y,Z)*WPP(X,Y,Z))
     
             END DO 
@@ -189,7 +189,7 @@ PROGRAM SCMP
             DO X = 1, XMAX
                 
     
-                    local_energy(X,Y,Z)= 0.5d0*dxy(x,y,z)*(UREAL(X,Y,Z)**2d0 + VREAL(X,Y,Z)**2d0 + WREAL(X,Y,Z)**2d0)
+                    local_energy(X,Y,Z)= 0.5d0*dxy(x,y,z)*(U(X,Y,Z)**2d0 + V(X,Y,Z)**2d0 + W(X,Y,Z)**2d0)
                 
             END DO
         END DO
@@ -244,3 +244,4 @@ PROGRAM SCMP
      PAUSE
 
     END PROGRAM SCMP
+
